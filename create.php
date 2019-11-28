@@ -16,7 +16,7 @@
                 <h3 class="well"> Cadastro </h3>
             </div>
             <div class="card-body">
-            <form class="form-horizontal" action="create.php" method="post">
+            <form class="form-horizontal" action="create.php" method="post" enctype="multipart/form-data">
 
                 <div class="control-group <?php echo !empty($userErro)?'error ' : '';?>">
                     <label class="control-label">User</label>
@@ -84,7 +84,19 @@
 
         $user = $_POST['user'];
         $pass = $_POST['pass'];
-        $img = $_FILE['img'];
+        $img = "";
+
+        if(isset($_FILES['img'])){
+
+            $extensao = strtolower(substr($_FILES['img']['name'], -4));
+
+            $novo_name = md5(time()).$extensao;
+            $diretorio = "upload/";
+
+            $img = move_uploaded_file($_FILES['img']['tmp_name'], $diretorio.$novo_name);
+        }
+
+        // $img = $_FILES['img'];
 
         //Validaçao dos campos:
         $validacao = true;
@@ -118,13 +130,6 @@
             echo "Cadastrado com sucesso!";
             Banco::desconectar();
             header("Location: index.php");
-
-            // $pdo = Banco::conectar();
-            // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            // $sql = "INSERT INTO usuarios(user, pass, img) VALUES($user,$pass,$img)";
-            // $conn->exec($sql);
-            // Banco::desconectar();
-            // header("Location: index.php");
         }
     }
 ?>

@@ -23,6 +23,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">Código</th>
                             <th scope="col">Usuário</th>
                             <th scope="col">Senha</th>
                             <th scope="col">Imagem</th>

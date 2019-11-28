@@ -1,9 +1,9 @@
 <?php
     require 'banco.php';
     $id = null;
-    if(!empty($_GET['id']))
+    if(!empty($_GET['usuario_id']))
     {
-        $id = $_REQUEST['id'];
+        $id = $_REQUEST['usuario_id'];
     }
 
     if(null==$id)
@@ -14,7 +14,7 @@
     {
        $pdo = Banco::conectar();
        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       $sql = "SELECT * FROM pessoa where id = ?";
+       $sql = "SELECT * FROM usuarios where usuario_id = ?";
        $q = $pdo->prepare($sql);
        $q->execute(array($id));
        $data = $q->fetch(PDO::FETCH_ASSOC);
@@ -37,12 +37,12 @@
             <div class="span10 offset1">
                   <div class="card">
     								<div class="card-header">
-                    <h3 class="well">Informações de usuario</h3>
+                    <h3 class="well">Informações de usuário</h3>
                 </div>
                 <div class="container">
                 <div class="form-horizontal">
                     <div class="control-group">
-                        <label class="control-label">User</label>
+                        <label class="control-label">Usuário</label>
                         <div class="controls">
                             <label class="carousel-inner">
                                 <?php echo $data['user'];?>
