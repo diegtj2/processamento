@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <title>Adicionar Contato</title>
+  <title>Cadastre-se</title>
 </head>
 
 <body>
